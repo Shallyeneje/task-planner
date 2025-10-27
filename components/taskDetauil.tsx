@@ -1,12 +1,14 @@
-import { useParams, useNavigate } from "react-router-dom";
+"use client";
+import { useParams, useRouter } from "next/navigation";
 import { useGetTasks, useUpdateTask } from "../api/data";
 import type { Task, TaskPriority, TaskStatus } from "../types/types";
 import { Button } from "../components/ui/button";
 import { useState } from "react";
 
 export default function TaskDetailPage() {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+  const params = useParams();
+  const id = params?.id as string | undefined;
+  const router = useRouter();
   const { data: tasks = [] } = useGetTasks();
   const { mutate: updateTask } = useUpdateTask();
 
@@ -94,7 +96,7 @@ export default function TaskDetailPage() {
   return (
     <div className="p-4 text-[#0f172a] space-y-4">
       <Button
-        onClick={() => navigate(-1)}
+        onClick={() => router.back()}
         className="bg-gray-200 text-[#0f172a] px-3 py-1 rounded-[5px] hover:bg-gray-300"
       >
         ← Back

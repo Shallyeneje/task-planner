@@ -1,13 +1,13 @@
-// import React from 'react'
+import TaskPlanner from "../components/taskPlanner";
 
-import TaskPlanner from "../components/taskPlanner"
+export const dynamic = "force-dynamic";
 
 const taskplanner = () => {
   return (
     <div>
-        <TaskPlanner/>
+      <TaskPlanner />
     </div>
-  )
-}
+  );
+};
 
-export default taskplanner
+export default taskplanner;

@@ -63,17 +63,11 @@
 //     </div>
 //   );
 // }
-"use client";
-
-import ErrorBoundary from "@/components/errorBoundary";
-import TaskPlanner from "@/components/taskPlanner";
-
 export default function HomePage() {
   return (
     <main className="max-w-3xl mx-auto p-4">
-      <ErrorBoundary>
-        <TaskPlanner />
-      </ErrorBoundary>
+      <h1>Task Planner</h1>
+      <p>Minimal server page used to isolate build issue.</p>
     </main>
   );
 }

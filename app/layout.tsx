@@ -1,41 +1,25 @@
-"use client";
-import "./globals.css";
-import ReactQueryProvider from "./providers/ReactQueryProvider";
-import React, { useState, useEffect } from "react";
-import Welcome from "../components/welcome";
-import Navbar from "../components/navbar";
 
 // export const metadata = {
 //   title: "Task Planner",
 //   description: "Manage your tasks efficiently",
 // };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [showWelcome, setShowWelcome] = useState(true);
+import "./globals.css";
+import ReactQueryProvider from "./providers/ReactQueryProvider";
+import Navbar from "../components/navbar";
+import ErrorBoundary from "../components/errorBoundary";
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowWelcome(false);
-    }, 2000); // show for 2 seconds
-
-    return () => clearTimeout(timer);
-  }, []);
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Server layout that mounts a client ReactQueryProvider boundary.
   return (
     <html lang="en">
       <body className="bg-[#f8fafc]">
-        {showWelcome ? (
-          <Welcome />
-        ) : (
-          <ReactQueryProvider>
-            <Navbar />
+        <ReactQueryProvider>
+          <Navbar />
+          <ErrorBoundary>
             <main className="min-h-screen">{children}</main>
-          </ReactQueryProvider>
-        )}
+          </ErrorBoundary>
+        </ReactQueryProvider>
       </body>
     </html>
   );

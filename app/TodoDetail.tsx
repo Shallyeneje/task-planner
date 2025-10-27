@@ -1,3 +1,4 @@
+"use client";
 // pages/TodoDetail.tsx
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
